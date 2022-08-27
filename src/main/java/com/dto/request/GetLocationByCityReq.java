@@ -1,2 +1,4 @@
-package com.dto.request;public class GetLocationByCityReq {
+package com.dto.request;
+
+public class GetLocationByCityReq {
 }

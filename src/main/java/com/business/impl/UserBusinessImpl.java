@@ -9,10 +9,12 @@ import com.dto.response.CommonResponse;
 import com.dto.response.GeneralResponse;
 import com.dto.response.UserRegistrationRes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+@Service
 public class UserBusinessImpl implements UserBusiness {
 
     @Autowired

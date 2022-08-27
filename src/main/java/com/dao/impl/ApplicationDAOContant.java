@@ -13,4 +13,19 @@ public class ApplicationDAOContant {
         String GET_VEHICLE_DETAIL_LIST = "select vd.BrandName,vd.ModelName,v.VechicleCategoryName from vechicle_detail vd inner join vechicle_category v \n" +
                 "on vd.VechicleCategoryId = v.VechicleCategoryId";
     }
+
+    interface ITrip {
+        String INSERT_TRIP = "insert into trip(SourceLocationId, DestinationLocationId, TravelDateTime, TripFare, TripStatus, BranchId, UserDetailId) VALUES (?,?,?,?,?,?,?)";
+
+
+        String EDIT_TRIP = "";
+
+        String CANCEL_TRIP = "";
+
+        String TRIP_LIST = "";
+
+        String TRIP_DETAIL = "";
+        String GET_LOCATIONS = "select LocationId,StreetAddress,City from location";
+        String GET_LOCATIONS_BY_CITY = "select LocationId, StreetAddress from location where City = ";
+    }
 }

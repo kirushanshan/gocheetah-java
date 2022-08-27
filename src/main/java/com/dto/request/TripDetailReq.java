@@ -1,2 +1,4 @@
-package com.dto.request;public class TripDetailReq {
+package com.dto.request;
+
+public class TripDetailReq {
 }

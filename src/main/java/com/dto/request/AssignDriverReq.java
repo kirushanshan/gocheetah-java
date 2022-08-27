@@ -1,2 +1,4 @@
-package com.dto.request;public class AssignDriverReq {
-}
+package com.dto.request;
+
+public class AssignDriverReq {
+        }
