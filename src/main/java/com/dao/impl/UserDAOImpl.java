@@ -1,7 +1,7 @@
 package com.dao.impl;
 
 import com.dao.UserDAO;
-import com.dto.request.CustomerLoginReq;
+import com.dto.request.UserLoginReq;
 import com.dto.request.DriverRegistrationReq;
 import com.dto.request.UserRegistrationReq;
 import com.dto.response.CommonResponse;
@@ -112,11 +112,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public int userLogin(CustomerLoginReq customerLoginReq) {
+    public int userLogin(UserLoginReq userLoginReq) {
         int loginStatus = 0;
         try{
             String QUERY = "select count(*) from userdetail " +
-                    "where EmailAddress = '"+customerLoginReq.getUsername()+"' and UserPassword = '"+customerLoginReq.getPasscode()+"'";
+                    "where EmailAddress = '"+ userLoginReq.getUsername()+"' and UserPassword = '"+ userLoginReq.getPasscode()+"'";
             loginStatus = jdbcTemplate.queryForObject(QUERY,Integer.class);
         }catch (Exception exception){
             exception.printStackTrace();

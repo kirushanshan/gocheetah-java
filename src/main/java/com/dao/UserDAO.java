@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.dto.request.CustomerLoginReq;
+import com.dto.request.UserLoginReq;
 import com.dto.request.DriverRegistrationReq;
 import com.dto.request.UserRegistrationReq;
 import com.dto.response.CommonResponse;
@@ -36,10 +36,10 @@ public interface UserDAO {
 
     /**
      *
-     * @param customerLoginReq
+     * @param userLoginReq
      * @return
      */
-    public int userLogin(CustomerLoginReq customerLoginReq);
+    public int userLogin(UserLoginReq userLoginReq);
 
     /**
      *

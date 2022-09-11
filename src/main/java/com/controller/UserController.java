@@ -1,9 +1,10 @@
 package com.controller;
 
-import com.dto.request.CustomerLoginReq;
+import com.dto.request.UserLoginReq;
 import com.dto.request.DriverRegistrationReq;
 import com.dto.request.UserRegistrationReq;
 import com.dto.response.GeneralResponse;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public interface UserController {
 
@@ -13,14 +14,14 @@ public interface UserController {
      * @param userRegistrationReq
      * @return
      */
-    public GeneralResponse userRegistrationReq(UserRegistrationReq userRegistrationReq);
+    public GeneralResponse userRegistrationReq(@RequestBody UserRegistrationReq userRegistrationReq);
 
     /**
      *
-     * @param customerLoginReq
+     * @param userLoginReq
      * @return
      */
-    public GeneralResponse userLogin(CustomerLoginReq customerLoginReq);
+    public GeneralResponse userLogin(@RequestBody UserLoginReq userLoginReq);
 
     /**
      *

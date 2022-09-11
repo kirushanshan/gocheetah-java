@@ -2,7 +2,7 @@ package com.business.impl;
 
 import com.business.UserBusiness;
 import com.dao.UserDAO;
-import com.dto.request.CustomerLoginReq;
+import com.dto.request.UserLoginReq;
 import com.dto.request.DriverRegistrationReq;
 import com.dto.request.UserRegistrationReq;
 import com.dto.response.CommonResponse;
@@ -32,7 +32,9 @@ public class UserBusinessImpl implements UserBusiness {
     private boolean validateFieldOnUserReg(UserRegistrationReq userRegistrationReq) {
         boolean bool = false;
         if(userRegistrationReq.getFirstName() != null && !userRegistrationReq.getFirstName().equals("")){
+
             bool = true;
+
         }
         if(userRegistrationReq.getLastName() != null && !userRegistrationReq.getLastName().equals("")){
             bool = true;
@@ -53,15 +55,15 @@ public class UserBusinessImpl implements UserBusiness {
     }
 
     @Override
-    public GeneralResponse userLogin(CustomerLoginReq customerLoginReq) {
+    public GeneralResponse userLogin(UserLoginReq userLoginReq) {
         GeneralResponse generalResponse = null;
         try {
-            String encryptedPassword = userDAO.passcodeEncrypt(customerLoginReq.getPasscode());
+            String encryptedPassword = userDAO.passcodeEncrypt(userLoginReq.getPasscode());
             String encryptedPassword2 = userDAO.passcodeEncrypt(encryptedPassword);
-            customerLoginReq.setPasscode(encryptedPassword2);
-            int loginStatus = userDAO.userLogin(customerLoginReq);
+            userLoginReq.setPasscode(encryptedPassword2);
+            int loginStatus = userDAO.userLogin(userLoginReq);
             if(loginStatus == 1){
-                UserRegistrationRes registrationRes  = userDAO.getUserByEmail(customerLoginReq.getUsername());
+                UserRegistrationRes registrationRes  = userDAO.getUserByEmail(userLoginReq.getUsername());
                 generalResponse = new GeneralResponse(registrationRes,1000,"Successfully logged in...!");
             }else {
                 generalResponse = new GeneralResponse(null,1003,"Login Failed, Please try again..!");

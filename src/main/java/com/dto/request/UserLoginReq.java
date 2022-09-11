@@ -1,6 +1,6 @@
 package com.dto.request;
 
-public class CustomerLoginReq {
+public class UserLoginReq {
     private String username;
     private String passcode;
 
