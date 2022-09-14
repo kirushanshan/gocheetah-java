@@ -9,10 +9,7 @@ import com.dto.response.CommonResponse;
 import com.dto.response.GeneralResponse;
 import com.dto.response.VehicleCategoriesRes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class VehicleControllerImpl implements VehicleController {
     }
 
     @Override
-    @PostMapping("/vehicle/get/categories")
+    @GetMapping("/vehicle/get/categories")
     public GeneralResponse getVehicleCategories() {
         return GeneralResponse.generateResponse(vehicleBusiness.getVehicleCategories(),1000,"Success");
     }
@@ -57,5 +54,28 @@ public class VehicleControllerImpl implements VehicleController {
     @PostMapping("/vehicle/get/detail/list")
     public GeneralResponse getVehicleDetails() {
         return GeneralResponse.generateResponse(vehicleBusiness.getVehicleDetails(),1000,"Success");
+    }
+
+    @Override
+    @DeleteMapping("/vehicle/delete/detail/{id}")
+    public GeneralResponse deleteVehicledetails(@PathVariable("id") String userId) {
+        CommonResponse commonResponse = vehicleBusiness.deleteVehicledetails(userId);
+        GeneralResponse response = new GeneralResponse();
+        response.setData(null);
+        response.setStatusCode(commonResponse.getStatusCode());
+        response.setMessage(commonResponse.getMessage());
+        return response;
+    }
+
+    @Override
+    @PutMapping("/vehicle/update/detail/{id}")
+    public  GeneralResponse  updateVehicleDetails(@PathVariable("id") String userId, @RequestBody VehicleCategoryReq vehicleCategoryReq ) {
+
+        CommonResponse commonResponse = vehicleBusiness.updateVehicleDetails(userId ,vehicleCategoryReq);
+        GeneralResponse response = new GeneralResponse();
+        response.setData(null);
+        response.setStatusCode(commonResponse.getStatusCode());
+        response.setMessage(commonResponse.getMessage());
+        return response;
     }
 }

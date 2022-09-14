@@ -161,4 +161,43 @@ public class VehicleDAOImpl implements VehicleDAO {
         }
         return list;
     }
+
+    @Override
+    public CommonResponse deleteVehicledetails(String userId) {
+//        DELETE FROM vechicle_category WHERE VechicleCategoryId = id;
+        CommonResponse commonResponse = null;
+        int isDeleted = 0;
+        try{
+            isDeleted = jdbcTemplate.update(ApplicationDAOContant.IVehicle.DELETE_VEHICLE_DETAIL,
+                    userId);
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+        commonResponse = new CommonResponse();
+        commonResponse.setRes(isDeleted == 1? true : false);
+        commonResponse.setStatusCode(isDeleted == 1? 1000 : 1036);
+        commonResponse.setMessage(isDeleted == 1? "Success fully deleted" : "Unable to Delete the category, please try again...!");
+
+        return commonResponse;
+    }
+
+    @Override
+    public CommonResponse updateVehicleDetails(String userId, VehicleCategoryReq vehicleCategoryReq) {
+        CommonResponse commonResponse = null;
+        int isInserted = 0;
+        try{
+            isInserted = jdbcTemplate.update(ApplicationDAOContant.IVehicle.UPDATE_VEHICLE_DETAIL,
+                    vehicleCategoryReq.getVehicleCategoryName(), userId);
+
+            if(isInserted == 1){
+                commonResponse = new CommonResponse(true,1000,"Success");
+            }else {
+                commonResponse = new CommonResponse(false,1001,"Unable to Update the vehicle Category, please try again...!");
+            }
+        }catch (Exception exception){
+            exception.printStackTrace();
+            commonResponse = new CommonResponse(false,1001,"Unable to Update the vehicle Category, please try again...!");
+        }
+        return commonResponse;
+    }
 }

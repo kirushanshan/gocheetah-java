@@ -23,4 +23,8 @@ public interface VehicleBusiness {
     GeneralResponse getVehicleDetail(GetVehicleDetailReq getVehicleDetailReq);
 
     List<VehicleDetailListRes> getVehicleDetails();
+
+    CommonResponse deleteVehicledetails(String userId);
+
+    CommonResponse updateVehicleDetails(String userId ,VehicleCategoryReq vehicleCategoryReq);
 }

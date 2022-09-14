@@ -48,4 +48,14 @@ public class VehicleBusinessImpl implements VehicleBusiness {
     public List<VehicleDetailListRes> getVehicleDetails() {
         return vehicleDAO.getVehicleDetails();
     }
+
+    @Override
+    public CommonResponse deleteVehicledetails(String userId) {
+        return vehicleDAO.deleteVehicledetails(userId);
+    }
+
+    @Override
+    public CommonResponse updateVehicleDetails(String userId, VehicleCategoryReq vehicleCategoryReq) {
+        return vehicleDAO.updateVehicleDetails(userId, vehicleCategoryReq);
+    }
 }

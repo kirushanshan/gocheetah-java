@@ -22,4 +22,8 @@ public interface VehicleDAO  {
     VehicleDetailRes getVehicleDetail(GetVehicleDetailReq getVehicleDetailReq);
 
     List<VehicleDetailListRes> getVehicleDetails();
+
+    CommonResponse deleteVehicledetails(String userId);
+
+    CommonResponse updateVehicleDetails(String userId ,VehicleCategoryReq vehicleCategoryReq);
 }

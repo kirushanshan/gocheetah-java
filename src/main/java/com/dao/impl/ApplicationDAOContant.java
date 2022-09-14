@@ -12,6 +12,9 @@ public class ApplicationDAOContant {
 
         String GET_VEHICLE_DETAIL_LIST = "select vd.BrandName,vd.ModelName,v.VechicleCategoryName from vechicle_detail vd inner join vechicle_category v \n" +
                 "on vd.VechicleCategoryId = v.VechicleCategoryId";
+
+        String DELETE_VEHICLE_DETAIL = "DELETE FROM vechicle_category WHERE VechicleCategoryId = ?";
+        String UPDATE_VEHICLE_DETAIL = "UPDATE vechicle_category SET VechicleCategoryName = ? WHERE `VechicleCategoryId` = ?";
     }
 
     interface ITrip {
