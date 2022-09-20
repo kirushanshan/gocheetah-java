@@ -3,6 +3,8 @@ package com.controller;
 import com.dto.request.*;
 import com.dto.response.GeneralResponse;
 
+import java.lang.reflect.GenericArrayType;
+
 public interface TripController {
     /**
      * createNewTrip
@@ -57,4 +59,8 @@ public interface TripController {
      * @return
      */
     public GeneralResponse getLocationListByCity(GetLocationByCityReq getLocationByCityReq);
+
+    public GeneralResponse tripRequest(TripRequestReq tripRequestReq);
+
+    public GeneralResponse getTripDetails(int tripId);
 }

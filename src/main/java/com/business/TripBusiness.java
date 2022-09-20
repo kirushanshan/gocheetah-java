@@ -16,4 +16,8 @@ public interface TripBusiness {
     GeneralResponse getTripDetail(TripDetailReq tripDetailReq);
 
     GeneralResponse getLocationListByCity(GetLocationByCityReq getLocationByCityReq);
+
+    GeneralResponse tripRequest(TripRequestReq tripRequestReq);
+
+    GeneralResponse getTripDetails(int tripId);
 }

@@ -4,10 +4,7 @@ import com.dao.VehicleDAO;
 import com.dto.request.GetVehicleDetailReq;
 import com.dto.request.VehicleCategoryReq;
 import com.dto.request.VehicleDetailReq;
-import com.dto.response.CommonResponse;
-import com.dto.response.VehicleCategoriesRes;
-import com.dto.response.VehicleDetailListRes;
-import com.dto.response.VehicleDetailRes;
+import com.dto.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -131,7 +128,8 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     @Override
-    public List<VehicleDetailListRes> getVehicleDetails() {
+    public GeneralResponse getVehicleDetails() {
+        GeneralResponse response = null;
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -141,17 +139,21 @@ public class VehicleDAOImpl implements VehicleDAO {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(ApplicationDAOContant.IVehicle.GET_VEHICLE_DETAIL_LIST);
             while (resultSet.next()){
-                VehicleDetailListRes res = new VehicleDetailListRes();
-                res.setBrandName(resultSet.getString(1));
-                res.setModelName(resultSet.getString(2));
-                res.setVehicleCategoryName(resultSet.getString(3));
+                VehicleDetailListRes vehicleDetailListRes = new VehicleDetailListRes();
+                vehicleDetailListRes.setVehicleDetailId(resultSet.getInt(1));
+                vehicleDetailListRes.setBrandName(resultSet.getString(2));
+                vehicleDetailListRes.setModelName(resultSet.getString(3));
+                vehicleDetailListRes.setVehicleCategoryName(resultSet.getString(4));
 
-                list.add(res);
+                list.add(vehicleDetailListRes);
             }
+
+            response = GeneralResponse.generateResponse(list,1000,"suceess fully get");
         }catch (SQLException exception){
+            response = GeneralResponse.generateResponse(exception,1001,"unsuceess fully get");
 
         }catch (Exception exception){
-
+            response = GeneralResponse.generateResponse(exception,1001,"unsuceess fully get");
         }finally {
             try {
                 connection.close();
@@ -159,7 +161,9 @@ public class VehicleDAOImpl implements VehicleDAO {
             } catch (SQLException e) {
             }
         }
-        return list;
+
+        return response;
+
     }
 
     @Override
@@ -182,11 +186,11 @@ public class VehicleDAOImpl implements VehicleDAO {
     }
 
     @Override
-    public CommonResponse updateVehicleDetails(String userId, VehicleCategoryReq vehicleCategoryReq) {
+    public CommonResponse updateVehicleCategory(String userId, VehicleCategoryReq vehicleCategoryReq) {
         CommonResponse commonResponse = null;
         int isInserted = 0;
         try{
-            isInserted = jdbcTemplate.update(ApplicationDAOContant.IVehicle.UPDATE_VEHICLE_DETAIL,
+            isInserted = jdbcTemplate.update(ApplicationDAOContant.IVehicle.UPDATE_VEHICLE_CATEGORY_DETAIL,
                     vehicleCategoryReq.getVehicleCategoryName(), userId);
 
             if(isInserted == 1){
@@ -199,5 +203,28 @@ public class VehicleDAOImpl implements VehicleDAO {
             commonResponse = new CommonResponse(false,1001,"Unable to Update the vehicle Category, please try again...!");
         }
         return commonResponse;
+    }
+
+    @Override
+    public GeneralResponse editVehicleDetail(int id, VehicleDetailListRes vehicleDetailListRes) {
+        GeneralResponse response = null;
+        int isInserted = 0;
+
+        try {
+            isInserted = jdbcTemplate.update(ApplicationDAOContant.IVehicle.UPDATE_VEHICLE_DETAIL,
+                    vehicleDetailListRes.getBrandName(),vehicleDetailListRes.getModelName(),
+                    vehicleDetailListRes.getVehicleCategoryId(),id);
+
+            if(isInserted == 1) {
+                response = GeneralResponse.generateResponse(null,1000,"Sucessfully Upadted Vehicle Details");
+            }
+            else  {
+                response = GeneralResponse.generateResponse(null,1001,"Unsucessfull Upadted Vehicle Details");
+            }
+        }catch (Exception e) {
+            response = GeneralResponse.generateResponse(e,1000,"Server Error Upadted Vehicle Details");
+        }
+
+        return response;
     }
 }

@@ -5,10 +5,7 @@ import com.controller.TripController;
 import com.dto.request.*;
 import com.dto.response.GeneralResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
@@ -62,5 +59,18 @@ public class TripControllerImpl implements TripController {
     @PostMapping("/trip/location/by/city")
     public GeneralResponse getLocationListByCity(GetLocationByCityReq getLocationByCityReq) {
         return tripBusiness.getLocationListByCity(getLocationByCityReq);
+    }
+
+    @Override
+    @PostMapping("/customer/cab/book/request")
+    public GeneralResponse tripRequest(@RequestBody TripRequestReq tripRequestReq) {
+        return tripBusiness.tripRequest(tripRequestReq);
+//             return   GeneralResponse.generateResponse(tripRequestReq,100,"sucess");
+    }
+
+    @Override
+    @GetMapping("/trip/get/details/{tripId}")
+    public GeneralResponse getTripDetails(@PathVariable("tripId") int tripId) {
+        return tripBusiness.getTripDetails(tripId);
     }
 }

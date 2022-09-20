@@ -3,10 +3,7 @@ package com.dao;
 import com.dto.request.GetVehicleDetailReq;
 import com.dto.request.VehicleCategoryReq;
 import com.dto.request.VehicleDetailReq;
-import com.dto.response.CommonResponse;
-import com.dto.response.VehicleCategoriesRes;
-import com.dto.response.VehicleDetailListRes;
-import com.dto.response.VehicleDetailRes;
+import com.dto.response.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,9 +18,11 @@ public interface VehicleDAO  {
 
     VehicleDetailRes getVehicleDetail(GetVehicleDetailReq getVehicleDetailReq);
 
-    List<VehicleDetailListRes> getVehicleDetails();
+    GeneralResponse getVehicleDetails();
 
     CommonResponse deleteVehicledetails(String userId);
 
-    CommonResponse updateVehicleDetails(String userId ,VehicleCategoryReq vehicleCategoryReq);
+    CommonResponse updateVehicleCategory(String userId ,VehicleCategoryReq vehicleCategoryReq);
+
+    GeneralResponse editVehicleDetail(int id, VehicleDetailListRes vehicleDetailListRes);
 }

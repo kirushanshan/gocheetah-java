@@ -3,7 +3,11 @@ package com.dto.response;
 public class LocationRes {
     private int locationId;
     private String streetAddress;
-    private String city;
+//    private String city;
+
+
+    public LocationRes() {
+    }
 
     public int getLocationId() {
         return locationId;
@@ -21,11 +25,11 @@ public class LocationRes {
         this.streetAddress = streetAddress;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
+//    public String getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(String city) {
+//        this.city = city;
+//    }
 }

@@ -25,6 +25,7 @@ public class UserControllerImpl implements UserController {
     @PostMapping("/create/customer")
     public GeneralResponse userRegistrationReq(@RequestBody UserRegistrationReq userRegistrationReq) {
         return userBusiness.userRegistration(userRegistrationReq);
+
     }
 
     @Override

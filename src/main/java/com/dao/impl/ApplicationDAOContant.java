@@ -10,11 +10,26 @@ public class ApplicationDAOContant {
         String GET_VEHICLE_DETAIL = "select vd.VechicleDetailId,vd.BrandName,vd.ModelName,v.VechicleCategoryName from vechicle_detail vd inner join vechicle_category v \n" +
                 "on vd.VechicleCategoryId = v.VechicleCategoryId where VechicleDetailId = ";
 
-        String GET_VEHICLE_DETAIL_LIST = "select vd.BrandName,vd.ModelName,v.VechicleCategoryName from vechicle_detail vd inner join vechicle_category v \n" +
+        String GET_VEHICLE_DETAIL_LIST = "select vd.VechicleDetailId,vd.BrandName,vd.ModelName,v.VechicleCategoryName from vechicle_detail vd inner join vechicle_category v \n" +
                 "on vd.VechicleCategoryId = v.VechicleCategoryId";
 
         String DELETE_VEHICLE_DETAIL = "DELETE FROM vechicle_category WHERE VechicleCategoryId = ?";
-        String UPDATE_VEHICLE_DETAIL = "UPDATE vechicle_category SET VechicleCategoryName = ? WHERE `VechicleCategoryId` = ?";
+        String UPDATE_VEHICLE_CATEGORY_DETAIL = "UPDATE vechicle_category SET VechicleCategoryName = ? WHERE `VechicleCategoryId` = ?";
+
+        String UPDATE_VEHICLE_DETAIL = "UPDATE vechicle_detail SET BrandName = ?, ModelName = ?, VechicleCategoryId = ? WHERE VechicleDetailId = ?";
+    }
+
+    interface IBranch {
+        String INSERT_BRANCH_NAME= "INSERT INTO branch (BranchName) VALUES (?)";
+
+        String GET_ALL_BRANCH_DETAILS = "SELECT * FROM branch";
+    }
+
+    interface ILocation {
+        String INSERT_CITY_NAME = "INSERT INTO city (BranchId,CityName) VALUES (?,?)";
+        String INSERT_LOCATION_DEATAILS = "INSERT INTO location (LocationName,StreetAddress,CityId,BranchId,locationTag) VALUES (?,?,?,?,?)";
+
+
     }
 
     interface ITrip {

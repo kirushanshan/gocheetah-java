@@ -7,7 +7,20 @@ public class TripRes {
     private String destinationLocation;
     private String travelDateTime;
     private String branchName;
-    private String createdBy;
+
+    private String driverName;
+
+    private  String driverPhoneNumber;
+
+    public String getDriverPhoneNumber() {
+        return driverPhoneNumber;
+    }
+
+    public void setDriverPhoneNumber(String driverPhoneNumber) {
+        this.driverPhoneNumber = driverPhoneNumber;
+    }
+
+    private double tripFare;
 
     public int getTripId() {
         return tripId;
@@ -49,11 +62,19 @@ public class TripRes {
         this.branchName = branchName;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public double getTripFare() {
+        return tripFare;
+    }
+
+    public void setTripFare(double tripFare) {
+        this.tripFare = tripFare;
     }
 }

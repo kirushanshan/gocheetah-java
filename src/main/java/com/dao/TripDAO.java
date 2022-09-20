@@ -16,4 +16,14 @@ public interface TripDAO {
     GeneralResponse getTripDetail(TripDetailReq tripDetailReq);
 
     GeneralResponse getLocationListByCity(GetLocationByCityReq getLocationByCityReq);
+
+
+
+    int assignDriverByBranch(int branchid);
+
+    int getLocationTag(int location);
+
+    GeneralResponse tripBook(TripRequestReq tripRequestReq, int driver, double tripFare);
+
+    GeneralResponse getTripDetails(int tripId);
 }

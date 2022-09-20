@@ -8,6 +8,7 @@ import com.dto.request.VehicleDetailReq;
 import com.dto.response.CommonResponse;
 import com.dto.response.GeneralResponse;
 import com.dto.response.VehicleCategoriesRes;
+import com.dto.response.VehicleDetailListRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +54,7 @@ public class VehicleControllerImpl implements VehicleController {
     @Override
     @PostMapping("/vehicle/get/detail/list")
     public GeneralResponse getVehicleDetails() {
-        return GeneralResponse.generateResponse(vehicleBusiness.getVehicleDetails(),1000,"Success");
+        return vehicleBusiness.getVehicleDetails();
     }
 
     @Override
@@ -68,14 +69,20 @@ public class VehicleControllerImpl implements VehicleController {
     }
 
     @Override
-    @PutMapping("/vehicle/update/detail/{id}")
-    public  GeneralResponse  updateVehicleDetails(@PathVariable("id") String userId, @RequestBody VehicleCategoryReq vehicleCategoryReq ) {
+    @PutMapping("/vehicle/update/category/{id}")
+    public  GeneralResponse  updateVehicleCategory(@PathVariable("id") String userId, @RequestBody VehicleCategoryReq vehicleCategoryReq ) {
 
-        CommonResponse commonResponse = vehicleBusiness.updateVehicleDetails(userId ,vehicleCategoryReq);
+        CommonResponse commonResponse = vehicleBusiness.updateVehicleCategory(userId ,vehicleCategoryReq);
         GeneralResponse response = new GeneralResponse();
         response.setData(null);
         response.setStatusCode(commonResponse.getStatusCode());
         response.setMessage(commonResponse.getMessage());
         return response;
+    }
+
+    @Override
+    @PutMapping("/vehicle/edit/detail/{id}")
+    public GeneralResponse editVehicleDetail(@PathVariable("id") int id,@RequestBody VehicleDetailListRes vehicleDetailListRes) {
+        return vehicleBusiness.editVehicleDetail(id, vehicleDetailListRes);
     }
 }

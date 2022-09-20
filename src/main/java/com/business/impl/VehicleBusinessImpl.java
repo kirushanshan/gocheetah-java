@@ -45,7 +45,7 @@ public class VehicleBusinessImpl implements VehicleBusiness {
     }
 
     @Override
-    public List<VehicleDetailListRes> getVehicleDetails() {
+    public GeneralResponse getVehicleDetails() {
         return vehicleDAO.getVehicleDetails();
     }
 
@@ -55,7 +55,12 @@ public class VehicleBusinessImpl implements VehicleBusiness {
     }
 
     @Override
-    public CommonResponse updateVehicleDetails(String userId, VehicleCategoryReq vehicleCategoryReq) {
-        return vehicleDAO.updateVehicleDetails(userId, vehicleCategoryReq);
+    public CommonResponse updateVehicleCategory(String userId, VehicleCategoryReq vehicleCategoryReq) {
+        return vehicleDAO.updateVehicleCategory(userId, vehicleCategoryReq);
+    }
+
+    @Override
+    public GeneralResponse editVehicleDetail(int id, VehicleDetailListRes vehicleDetailListRes) {
+        return vehicleDAO.editVehicleDetail(id, vehicleDetailListRes);
     }
 }

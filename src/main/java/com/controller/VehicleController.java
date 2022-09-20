@@ -49,6 +49,10 @@ public interface VehicleController {
      */
     public GeneralResponse deleteVehicledetails(String userId);
 
-    public  GeneralResponse updateVehicleDetails(String userId ,VehicleCategoryReq vehicleCategoryReq);
+    public  GeneralResponse updateVehicleCategory(String userId ,VehicleCategoryReq vehicleCategoryReq);
+
+    public GeneralResponse editVehicleDetail(int id, VehicleDetailListRes vehicleDetailListRes );
+
+
 
 }

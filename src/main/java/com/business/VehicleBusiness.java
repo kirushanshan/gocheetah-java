@@ -22,9 +22,12 @@ public interface VehicleBusiness {
 
     GeneralResponse getVehicleDetail(GetVehicleDetailReq getVehicleDetailReq);
 
-    List<VehicleDetailListRes> getVehicleDetails();
+    GeneralResponse getVehicleDetails();
 
     CommonResponse deleteVehicledetails(String userId);
 
-    CommonResponse updateVehicleDetails(String userId ,VehicleCategoryReq vehicleCategoryReq);
+    CommonResponse updateVehicleCategory(String userId ,VehicleCategoryReq vehicleCategoryReq);
+
+
+    GeneralResponse editVehicleDetail(int id, VehicleDetailListRes vehicleDetailListRes);
 }
